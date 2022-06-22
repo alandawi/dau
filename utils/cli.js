@@ -23,11 +23,18 @@ const flags = {
 		type: `boolean`,
 		alias: `v`,
 		desc: `Print CLI version`
+	},
+	assetType: {
+		type: `string`,
+		default: 'adwords',
+		alias: `at`,
+		desc: `Type of the asset ('adwords' or 'dcm') to validate.`
 	}
 };
 
 const commands = {
 	help: { desc: `Print help info` },
+	qa: { desc: `Search for .zip files in a directory and return the result of banner validation` },
 	repos: { desc: `Get the versions of all the repositories inside GitHub Media.Monks DisplayAd` },
 	bannerToVideo: { desc: `Easily export GreenSock (GSAP) animation to video.` },
 	compressImages: { desc: `Minify size your images. Image compression with extension: jpg/jpeg, svg, png, gif.` }
