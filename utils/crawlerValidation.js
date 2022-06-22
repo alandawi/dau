@@ -1,5 +1,3 @@
-// TODO: NEED TO RESOLVE A PROMISE TO INDEX.JS?
-
 // Imports
 const path = require("path");
 const fs = require('fs');
@@ -7,8 +5,7 @@ const fs = require('fs');
 const { webkit } = require('playwright'); // Or 'chromium' or 'firefox'
 const alert = require('cli-alerts');
 
-module.exports = async () => {
-    // Global vars
+module.exports = async (assetType) => {
     let bannersZipFiles = [];
     let validationResult = [];
     const directoryPath = path.join(__dirname, '../build'); // TODO: need to check the true dir
@@ -35,13 +32,12 @@ module.exports = async () => {
 
     // Init
     const init = async () => {
-        //alert({type: `info`, msg: `Found ${bannersZipFiles.length} .zip files`});
         alert({type: `success`, msg: `.zip files found`});
 
         const browser = await webkit.launch({ ignoreHTTPSErrors: true, headless: false, args: ['--start-maximized'], slowMo: 250 });
         const context = await browser.newContext();
         const page = await context.newPage();
-        const url = baseUrl('adwords'); // TODO: NEED TO GRAB FROM THE PARAMETERS
+        const url = baseUrl(assetType); // TODO: NEED TO GRAB FROM THE PARAMETERS
 
         for (const [index, zipFile] of bannersZipFiles.entries()) {
             let hasErrors = false;
@@ -102,7 +98,6 @@ module.exports = async () => {
     }
 
     const seachZips = async () => {
-        // Read directory for .zip files
         return fs.readdir(directoryPath, (err, files) => {
             if (err) {
                 return alert({type: `error`, msg: `Unable to scan directory:`});
@@ -113,8 +108,6 @@ module.exports = async () => {
                     bannersZipFiles.push(file)
                 }
             });
-
-            //await init();
         });
     }
 

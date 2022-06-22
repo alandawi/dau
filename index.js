@@ -23,7 +23,7 @@ const { clear, debug } = flags;
 	input.includes(`help`) && cli.showHelp(0);
 
 	if (input.includes(`qa`)) {
-		await crawlerValidation()
+		await crawlerValidation(flags.assetType)
 	}
 
 	if (input.includes(`bannerToVideo`)) {
