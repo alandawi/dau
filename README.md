@@ -1,22 +1,22 @@
 # Display Advertising Utils
 
 
-## 💻 Requirements and install
+### 💻 Requirements and install
 
 - [NodeJS](https://nodejs.org/en/) (8 or greater)
 
 ```bash
-npm install -g dau
+npm install -g @alandawi/dau
 ```
 
 
-## 	⌨️ Usage
+### 	⌨️ Usage
 
 ```bash
 dau <command> [option]
 ```
 
-### Commands
+#### Commands
 
 * **help**: Print help info.                                                                     
 * **qa**: Search for .zip files in a directory and return the result of banner validation.
@@ -24,7 +24,7 @@ dau <command> [option]
 * **bannerToVideo**: Easily export GreenSock (GSAP) animation to video.
 * **compressImages**: Minify size your images. Image compression with extension: jpg/jpeg, svg, png, gif.
 
-### Options
+#### Options
 
 * **--clear**: Clear the console.
 * **--noClear**: Don't clear the console.
@@ -33,7 +33,7 @@ dau <command> [option]
 * **--assetType**: Type of the asset ('adwords' or 'dcm') to validate.
 
 
-## 📚 Examples
+### 📚 Examples
 
 Validate the banners from a directory, run the following command:
 
