@@ -35,10 +35,13 @@ dau <command> [option]
 
 ## 📚 Examples
 
+Validate the banners from a directory, run the following command:
+
 ```bash
 dau qa --assetType dcm
 ```
 
+Get the information about the repositories inside DisplayAd:
 ```bash
 dau repos
 ```

@@ -1,14 +1,12 @@
 // Imports
-const path = require("path");
 const fs = require('fs');
-//const { cwd } = require('node:process');
+const { cwd } = require('node:process');
 const { webkit } = require('playwright'); // Or 'chromium' or 'firefox'
 const alert = require('cli-alerts');
 
 module.exports = async (assetType) => {
     let bannersZipFiles = [];
     let validationResult = [];
-    const directoryPath = path.join(__dirname, '../build'); // TODO: need to check the true dir
     const baseUrl = (type) => `https://h5validator.appspot.com/${type}/asset`;
 
     const createTable = async (data) => {
@@ -32,7 +30,7 @@ module.exports = async (assetType) => {
     const init = async () => {
         alert({type: `success`, msg: `.zip files found`});
 
-        const browser = await webkit.launch({ ignoreHTTPSErrors: true, headless: true, args: ['--start-maximized'], slowMo: 250 });
+        const browser = await webkit.launch({ ignoreHTTPSErrors: true, headless: false, args: ['--start-maximized'], slowMo: 250 });
         const context = await browser.newContext();
         const page = await context.newPage();
         const url = baseUrl(assetType);
@@ -49,7 +47,7 @@ module.exports = async (assetType) => {
                 page.waitForEvent('filechooser'),
                 page.locator('.upload-container button').click(),
             ]);
-            await fileChooser.setFiles(`./build/${zipFile}`); // TODO: need to read the current directory
+            await fileChooser.setFiles(`./${zipFile}`); // TODO: need to read the current directory
 
             await page.waitForTimeout(1000);
             
@@ -87,16 +85,16 @@ module.exports = async (assetType) => {
         const htmlData = await createTable(validationResult)
         
         fs.writeFile('VALIDATION.html', htmlData, function async (err) {
-            //console.log(__dirname)
-            //console.log(`${cwd()}/FOLDER/`);
             if (err) alert({type: `error`, msg: err});
         })
+
+        // TODO: Add total time
 
         alert({type: `success`, msg: `Please check the result inside the 'validation.html' file in the same directory.`, name: `ALL DONE`});
     }
 
     const seachZips = async () => {
-        return fs.readdir(directoryPath, (err, files) => {
+        return fs.readdir(cwd(), (err, files) => {
             if (err) {
                 return alert({type: `error`, msg: `Unable to scan directory:`});
             } 
