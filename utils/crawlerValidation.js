@@ -9,9 +9,7 @@ module.exports = async (assetType) => {
     let bannersZipFiles = [];
     let validationResult = [];
     const directoryPath = path.join(__dirname, '../build'); // TODO: need to check the true dir
-    const baseUrl = (type) => `https://h5validator.appspot.com/${type}/asset`; // adwords  or dcm
-
-    // TODO: need to get the argument with the TYPE of the validation
+    const baseUrl = (type) => `https://h5validator.appspot.com/${type}/asset`;
 
     const createTable = async (data) => {
         var myTable = "<table width='100%' align='center' border='1' cellpadding='10'><tr><th>BANNER</th><th>WITH ERROR</th><th>UNDER 150KB</th><th>VALIDATION LINK</th></tr>";
@@ -34,10 +32,10 @@ module.exports = async (assetType) => {
     const init = async () => {
         alert({type: `success`, msg: `.zip files found`});
 
-        const browser = await webkit.launch({ ignoreHTTPSErrors: true, headless: false, args: ['--start-maximized'], slowMo: 250 });
+        const browser = await webkit.launch({ ignoreHTTPSErrors: true, headless: true, args: ['--start-maximized'], slowMo: 250 });
         const context = await browser.newContext();
         const page = await context.newPage();
-        const url = baseUrl(assetType); // TODO: NEED TO GRAB FROM THE PARAMETERS
+        const url = baseUrl(assetType);
 
         for (const [index, zipFile] of bannersZipFiles.entries()) {
             let hasErrors = false;
@@ -58,7 +56,7 @@ module.exports = async (assetType) => {
             await page.waitForSelector('.card-title');
             await page.waitForTimeout(6000);
 
-            await page.waitForSelector('.card-title');
+            // await page.waitForSelector('.card-title', { timeout: 5000 }); // Need?
 
             try {
                 await page.waitForSelector('.fail-more-details', { timeout: 3500 })
