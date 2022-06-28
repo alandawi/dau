@@ -10,6 +10,7 @@
 const init = require('./utils/init');
 const cli = require('./utils/cli');
 const crawlerValidation = require('./utils/crawlerValidation');
+const bannerToVideo = require('./utils/bannerToVideo');
 const getRepos = require('./utils/getRepos');
 const log = require('./utils/log');
 const alert = require('cli-alerts');
@@ -27,8 +28,7 @@ const { clear, debug } = flags;
 	}
 
 	if (input.includes(`bannerToVideo`)) {
-		alert({type: `warning`, msg: `Work in Progress!`, name: `bannerToVideo`});
-		// https://github.com/workeffortwaste/gsap-video-export
+		await bannerToVideo(flags.videoOpts);
 	}
 
 	if (input.includes(`compressImages`)) {

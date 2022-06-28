@@ -29,6 +29,12 @@ const flags = {
 		default: 'adwords',
 		alias: `at`,
 		desc: `Type of the asset ('adwords' or 'dcm') to validate.`
+	},
+	videoOpts: {
+		type: `string`,
+		default: ' ',
+		alias: `vo`,
+		desc: `Instructions https://github.com/workeffortwaste/gsap-video-export`
 	}
 };
 

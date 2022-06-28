@@ -89,7 +89,6 @@ module.exports = async (assetType) => {
         })
 
         // TODO: Add total time
-
         alert({type: `success`, msg: `Please check the result inside the 'validation.html' file in the same directory.`, name: `ALL DONE`});
     }
 
@@ -97,7 +96,9 @@ module.exports = async (assetType) => {
         return fs.readdir(cwd(), (err, files) => {
             if (err) {
                 return alert({type: `error`, msg: `Unable to scan directory:`});
-            } 
+            }
+
+            // TODO: validate .zip or show the error
 
             files.forEach( (file) => {
                 if (file.includes('.zip')) {
@@ -108,6 +109,8 @@ module.exports = async (assetType) => {
     }
 
     await seachZips();
+
+    // TODO: init only if there are .zip files
     await init();
 };
 
