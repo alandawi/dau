@@ -1,7 +1,7 @@
 {
 	"name": "@alandawi/dau",
 	"description": "Display Advertising Utils",
-	"version": "1.1.6",
+	"version": "1.2.1",
 	"license": "MIT",
 	"bin": {
 		"dau": "index.js"

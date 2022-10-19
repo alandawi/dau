@@ -7,6 +7,7 @@
 
 ```bash
 npm install -g @alandawi/dau
+npm install -g rimraf
 ```
 
 
@@ -21,6 +22,7 @@ dau <command> [option]
 * **help**: Print help info.                                                                     
 * **qa**: Search for .zip files in a directory and return the result of banner validation.
 * **repos**: Get the versions of all the repositories inside GitHub Media.Monks DisplayAd.
+* **deleteModules**: Delete all the node_modules folders from a directory (recursive).
 * **bannerToVideo**: Easily export GreenSock (GSAP) animation to video.
 * **compressImages**: Minify size your images. Image compression with extension: jpg/jpeg, svg, png, gif.
 
@@ -44,4 +46,10 @@ dau qa --assetType dcm
 Get the information about the repositories inside DisplayAd:
 ```bash
 dau repos
+```
+
+Find 'node_modules' folders (recursive) inside a directory:
+```bash
+cd myExampleDirectoryWithProjects
+dau deleteModules
 ```

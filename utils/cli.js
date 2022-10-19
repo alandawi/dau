@@ -42,6 +42,7 @@ const commands = {
 	help: { desc: `Print help info` },
 	qa: { desc: `Search for .zip files in a directory and return the result of banner validation` },
 	repos: { desc: `Get the versions of all the repositories inside GitHub Media.Monks DisplayAd` },
+	deleteModules: { desc: `Delete all the node_modules folders from a directory (recursive)` },
 	bannerToVideo: { desc: `Easily export GreenSock (GSAP) animation to video.` },
 	compressImages: { desc: `Minify size your images. Image compression with extension: jpg/jpeg, svg, png, gif.` }
 };

@@ -98,6 +98,8 @@ module.exports = async (assetType) => {
                 return alert({type: `error`, msg: `Unable to scan directory:`});
             }
 
+            // TODO: check if .zip files exists
+
             // TODO: validate .zip or show the error
 
             files.forEach( (file) => {

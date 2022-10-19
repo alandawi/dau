@@ -15,6 +15,14 @@ const getRepos = require('./utils/getRepos');
 const log = require('./utils/log');
 const alert = require('cli-alerts');
 
+const { exec, spawn } = require("child_process");
+// const { readdir } = require('fs').promises;
+// const { statSync } = require('fs');
+
+const fs = require('fs/promises');
+
+
+
 const input = cli.input;
 const flags = cli.flags;
 const { clear, debug } = flags;
@@ -38,6 +46,22 @@ const { clear, debug } = flags;
 
 	if (input.includes(`repos`)) {
 		await getRepos()
+	}
+	
+	if (input.includes('cleanModules')) {
+		exec("rimraf ./**/node_modules", (error, stdout, stderr) => {
+			if (error) {
+				console.log(`error: ${error.message}`);
+				return;
+			}
+
+			if (stderr) {
+				console.log(`stderr: ${stderr}`);
+				return;
+			}
+
+			alert({type: `success`, msg: `Please check the size of your directory`, name: `ALL DONE`});
+		});
 	}
 
 	debug && log(flags);
